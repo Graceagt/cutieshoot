@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class BoothController extends Controller
 {
-    // halaman booth
+  
     public function index()
     {
         $photos = Photo::latest()->get();
@@ -16,7 +16,6 @@ class BoothController extends Controller
         return view('booth', compact('photos'));
     }
 
-    // simpan foto
     public function store(Request $request)
     {
         $image = $request->image;

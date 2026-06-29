@@ -1,3 +1,5 @@
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
 @extends('layouts.app')
 
 @section('title', 'Booth')
@@ -8,7 +10,8 @@
 
 <div class="max-w-4xl mx-auto text-center px-4 pt-12">
 
-  <h2 class="text-3xl font-bold mb-6">📸 Photo Booth</h2>
+  <h2 class="text-white text-3xl drop-shadow-lg mb-10"
+  style="font-family: 'Pacifico', cursive;">📸Booth</h2>
 
 <!-- Controls -->
 <div class="flex flex-wrap justify-center gap-4 mb-8">
@@ -88,14 +91,21 @@
 
   <!-- Camera -->
   <div class="flex flex-col items-center">
-    <video id="video" autoplay playsinline class="rounded-2xl shadow-lg w-full max-w-md"></video>
+    <video
+    id="video"
+    autoplay
+    playsinline
+    class="rounded-2xl shadow-lg w-full max-w-md scale-x-[-1]">
+</video>
 
     <div class="mt-4 flex gap-4">
-      <button onclick="startCamera()" class="bg-white text-pink-600 px-6 py-3 rounded-xl font-medium shadow hover:scale-105 transition">
+      <button onclick="startCamera()" class="bg-white text-pink-600 px-6 py-3 rounded-xl font-medium shadow hover:scale-105 transition" 
+      style="font-family:, cursive;">
         Start Camera
       </button>
 
-      <button onclick="startStrip()" class="bg-white text-pink-600 px-6 py-3 rounded-xl font-medium shadow hover:scale-105 transition">
+      <button onclick="startStrip()" class="bg-white text-pink-600 px-6 py-3 rounded-xl font-medium shadow hover:scale-105 transition" 
+      style="font-family:, cursive;">
         Take Photo
       </button>
     </div>
@@ -103,7 +113,8 @@
 
   <!-- Result -->
   <div class="mt-10">
-    <h3 class="text-xl mb-4">Results</h3>
+    <h3 class="text-white text-3xl drop-shadow-lg mb-15"
+    style="font-family: 'Pacifico', cursive;">Results</h3>
     <div id="gallery" class="flex flex-wrap justify-center gap-6"></div>
   </div>
 
@@ -122,7 +133,7 @@
     display: block;
   }
   
-  /* Frames */
+
   .frame-white {
     background: white;
   }
@@ -162,7 +173,6 @@
     );
   }
   
-  /* Watermark */
   .watermark {
     font-size: 12px;
     text-align: center;
@@ -174,9 +184,6 @@
      class="fixed inset-0 bg-white opacity-0 pointer-events-none z-[9999]">
 </div>
 
-<audio id="shutterSound">
-  <source src="https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3" type="audio/mpeg">
-</audio>
 
 <div id="previewArea"
      class="grid grid-cols-4 gap-2 mt-6 max-w-xs mx-auto">
@@ -208,7 +215,6 @@ const frameSelect = document.getElementById('frame');
 
 let shots = [];
 
-// filter preview
 filterSelect.addEventListener('change', () => {
   video.style.filter = filterSelect.value;
 });
@@ -222,7 +228,7 @@ async function startCamera() {
     alert('Camera tidak bisa diakses');
   }
 }
-// ambil foto sesuai pilihan
+
 async function startStrip() {
 
 shots = [];
@@ -289,8 +295,6 @@ function flashEffect() {
 
 async function takeShot() {
 
-document.getElementById('shutterSound').play();
-
 await flashEffect();
 
 const ctx = canvas.getContext('2d');
@@ -299,26 +303,16 @@ canvas.width = video.videoWidth;
 canvas.height = video.videoHeight;
 
 ctx.filter = filterSelect.value;
-ctx.drawImage(video, 0, 0);
+
+
+ctx.save();
+ctx.scale(-1, 1);
+ctx.drawImage(video, -canvas.width, 0, canvas.width, canvas.height);
+ctx.restore();
 
 const imageData = canvas.toDataURL('image/png');
 
 shots.push(imageData);
-}
-
-function takeShot() {
-  flashEffect();
-
-  const ctx = canvas.getContext('2d');
-
-  canvas.width = video.videoWidth;
-  canvas.height = video.videoHeight;
-
-  ctx.filter = filterSelect.value;
-  ctx.drawImage(video, 0, 0);
-
-  const imageData = canvas.toDataURL('image/png');
-  shots.push(imageData);
 }
 
 function showPreview() {
@@ -366,7 +360,7 @@ shots = selected;
 
 createStrip();
 
-// reset preview
+
 document.getElementById('previewArea').innerHTML = '';
 document.getElementById('actionButtons').classList.add('hidden');
 }
@@ -380,7 +374,7 @@ function retake() {
         .classList.add('hidden');
 }
 
-// buat strip + SAVE ke Laravel
+
 function createStrip() {
   const wrap = document.createElement('div');
   wrap.className = "relative";
@@ -402,7 +396,10 @@ function createStrip() {
   const wm = document.createElement('div');
   wm.innerText = "Cutieshoot <3\n" + new Date().toLocaleDateString();
   wm.className = "watermark";
-  strip.appendChild(wm);
+  wm.style.fontFamily = "'Pacifico', cursive";
+  wm.style.color = "#ec4899"; 
+
+strip.appendChild(wm);
 
   const del = document.createElement('button');
   del.innerText = "✕";
@@ -417,22 +414,36 @@ function createStrip() {
 
   // 🔥 SAVE STRIP (INI KUNCI)
   html2canvas(strip).then(canvas => {
-    const imageData = canvas.toDataURL('image/png');
 
-    fetch('/save-photo', {
-      method: 'POST',
-      headers: {
+const imageData = canvas.toDataURL('image/png');
+
+fetch('/save-photo', {
+    method: 'POST',
+    headers: {
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
         'X-CSRF-TOKEN': '{{ csrf_token() }}'
-      },
-      body: JSON.stringify({
+    },
+    body: JSON.stringify({
         image: imageData,
         filter: filterSelect.value,
         frame: frameSelect.value
-      })
-    });
-  });
-}
+    })
+})
+.then(response => response.json())
+.then(data => {
+    console.log('Saved:', data);
+})
+.catch(error => {
+    console.error(error);
+    alert('Gagal menyimpan foto');
+});
+
+});
+
+shots = [];
+
+} // tutup function createStrip()
 </script>
 
 @endsection

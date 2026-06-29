@@ -13,8 +13,9 @@
 <nav class="bg-white/80 backdrop-blur-md shadow-lg border-b border-pink-200 sticky top-0 z-50">
   <div class="flex justify-between items-center max-w-6xl mx-auto px-6 py-4">
 
-    <h1 class="font-bold text-xl text-pink-500">
-      📸 Cutieshoot
+    <h1 class="text-pink-500 text-3xl"
+    style="font-family: 'Pacifico', cursive;"
+    >Cutieshoot
     </h1>
 
     <div class="space-x-6 font-medium">
@@ -42,16 +43,18 @@
 
 <!-- Footer -->
 <footer class="mt-20 bg-white/80 backdrop-blur-md shadow-lg border-t border-pink-200">
-  <div class="max-w-6xl mx-auto px-6 py-6">
+  <div class="max-w-6xl mx-auto px-6 py-4">
 
-      <div class="flex flex-col md:flex-row justify-between items-center gap-3">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-3 text-xs">
 
-          <p class="text-pink-500">
-              © 2026 Cutieshoot Booth
+          <p class="text-pink-500 text-base"
+          style="font-family: 'Pacifico', cursive;">
+              © 2026 Cutieshoot 
           </p>
 
-          <p class="text-pink-500">
-              Made with 💖 for portfolio
+          <p class="text-pink-500 text-base"
+          style="font-family: 'Pacifico', cursive;">
+              Made with love for portfolio
           </p>
 
       </div>

@@ -1,62 +1,49 @@
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
 @extends('layouts.app')
 
 @section('title', 'Home')
 
 @section('content')
 
-<section class="py-24 px-6">
+<section class="py-20 px-6">
 
-  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+<div class="flex flex-col items-center text-center">
 
-      <!-- Left -->
-      <div class="flex flex-col items-center">
+    <div class="p-10">
+        <h3
+            class="text-white text-6xl drop-shadow-lg"
+            style="font-family: 'Pacifico', cursive;"
+        >
+            Cutieshoot
+        </h3>
 
-          <!-- Logo -->
-          <div class="bg-white/20 backdrop-blur-md rounded-3xl p-10 shadow-xl">
-            <div class="text-8xl">📸</div>
-            <h3 class="text-white text-2xl font-bold mt-4">
-                Cutieshoot
-            </h3>
-        </div>
+        <p class="mt-3 text-pink-100 text-lg tracking-[0.3em] uppercase">
+            Capture • Smile • Memories
+        </p>
 
-      </div>
+        <p class="mt-5 text-white/75 max-w-sm leading-relaxed">
+            Every click tells a story. Create beautiful memories with
+            aesthetic filters, custom frames, and instant photostrips.
+        </p>
+    </div>
 
-      <!-- Right -->
-      <div>
-
-          <span class="bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm">
-              📸 Online Photobooth
-          </span>
-
-          <h1 class="text-white text-5xl font-bold mt-6 mb-6">
-              Cutieshoot ✨
-          </h1>
-
-          <p class="text-white/80 text-lg leading-relaxed mb-6">
-              Cutieshoot is an online photobooth designed to help you
-              capture memorable moments with aesthetic filters,
-              customizable frames, and beautiful photo strips.
-          </p>
-
-          <p class="text-white/70 leading-relaxed mb-8">
-              Take photos directly from your camera, choose your
-              favorite shots, create unique photostrips, and save
-              them instantly. Perfect for making fun memories with
-              friends, family, or yourself.
-          </p>
-      </div>
+</div>
 
   </div>
 
 </section>
 
 <div class="max-w-5xl mx-auto my-8">
-  <div class="h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
+    <div class="h-px bg-white/40"></div>
 </div>
 
 <section class="text-center py-32">
-    <h2 class="text-white text-5xl font-bold mb-6">
-        Capture Your Moment ✨
+    <h2
+        class="text-white text-5xl mb-6 drop-shadow-lg"
+        style="font-family: 'Pacifico', cursive;"
+    >
+        ~ Capture Your Moment ~
     </h2>
 
     <p class="text-white/80 text-lg mb-8">
@@ -70,7 +57,7 @@
 </section>
 
 <div class="max-w-4xl mx-auto my-8">
-  <div class="h-px bg-white/20"></div>
+    <div class="h-px bg-white/40"></div>
 </div>
 
 <section class="py-20">
@@ -78,7 +65,8 @@
 
     <div class="relative mb-10">
 
-      <h2 class="text-white text-4xl font-bold text-center">
+      <h2  class="text-white text-5xl mb-6 drop-shadow-lg"
+      style="font-family: 'Pacifico', cursive;">
           Gallery 📸
       </h2>
   
@@ -114,7 +102,7 @@
                 </div>
             @empty
                 <p class="col-span-full text-white/60">
-                    No Photos Yet ✨
+                    No Photos Yet 
                 </p>
             @endforelse
 
@@ -157,7 +145,6 @@ function closeModal() {
     document.body.classList.remove('overflow-hidden');
 }
 
-// Tutup modal dengan tombol ESC
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') {
         closeModal();

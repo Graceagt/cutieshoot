@@ -1,3 +1,4 @@
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 @extends('layouts.app')
 
 @section('title', 'Gallery')
@@ -9,36 +10,58 @@
     <div class="max-w-7xl mx-auto">
 
         <div class="text-center mb-12">
-            <h1 class="text-5xl font-bold text-white mb-4">
-                Gallery 📸
+            <h1
+                class="text-white text-5xl drop-shadow-lg mb-10"
+                style="font-family: 'Pacifico', cursive;"
+            >
+                Gallery 
             </h1>
-
-            <p class="text-white/70">
+        
+            <p class="text-white/80 text-center max-w-md mx-auto">
                 All moments captured from Cutieshoot
             </p>
+        </div>
+
         </div>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 justify-items-center">
 
             @forelse($photos as $photo)
-        
-                <div class="bg-white/20 backdrop-blur-md p-2 rounded-2xl shadow-lg border border-white/20 w-44">
-        
+
+                <div class="relative bg-white/20 backdrop-blur-md p-2 rounded-2xl shadow-lg border border-white/20 w-44">
+
                     <img
                         src="{{ asset('storage/' . $photo->image) }}"
                         alt="Photo"
                         onclick="openModal('{{ asset('storage/' . $photo->image) }}')"
                         class="rounded-xl w-full aspect-square object-cover cursor-pointer hover:scale-105 transition duration-300"
                     >
-        
+
+                    <form
+                        action="{{ route('gallery.destroy', $photo->id) }}"
+                        method="POST"
+                        class="absolute top-2 right-2"
+                        onsubmit="return confirm('Are you sure you want to delete this photo?')"
+                    >
+                        @csrf
+                        @method('DELETE')
+
+                        <button
+                            type="submit"
+                            class="w-5 h-5 bg-pink-500 hover:bg-pink-600 text-white flex items-center justify-center rounded-0.5 shadow-lg transition"
+                        >
+                            ✕
+                        </button>
+                    </form>
+
                 </div>
-        
-            @empty
-        
+
+                @empty
+
                 <div class="col-span-full text-center text-white/60">
-                    No photos available ✨
+                    No photos available
                 </div>
-        
-            @endforelse
+
+                @endforelse
         
         </div>
 

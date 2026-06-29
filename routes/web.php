@@ -27,3 +27,6 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/gallery', [GalleryController::class, 'gallery'])
     ->name('gallery');
+    
+Route::delete('/gallery/{photo}', [GalleryController::class, 'destroy'])
+        ->name('gallery.destroy');
