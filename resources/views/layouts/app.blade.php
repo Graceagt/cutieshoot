@@ -11,12 +11,17 @@
 <body class="bg-gradient-to-r from-pink-200 via-pink-500 to-rose-200">
 <!-- Navbar -->
 <nav class="bg-white/80 backdrop-blur-md shadow-lg border-b border-pink-200 sticky top-0 z-50">
-  <div class="flex justify-between items-center max-w-6xl mx-auto px-6 py-4">
+  <div class="flex justify-between items-center max-w-6xl mx-auto px-6 py-3">
 
-    <h1 class="text-pink-500 text-3xl"
-    style="font-family: 'Pacifico', cursive;"
-    >Cutieshoot
-    </h1>
+    <a href="/"
+    class="inline-block hover:scale-105 transition duration-300">
+     <h1
+         class="text-pink-500 text-3xl hover:text-pink-600"
+         style="font-family: 'Pacifico', cursive;"
+     >
+         Cutieshoot
+     </h1>
+    </a>
 
     <div class="space-x-6 font-medium">
       <a href="/"

@@ -34,7 +34,7 @@
 
 </section>
 
-<div class="max-w-5xl mx-auto my-8">
+<div class="max-w-5xl mx-auto my6">
     <div class="h-px bg-white/40"></div>
 </div>
 
@@ -60,10 +60,10 @@
     <div class="h-px bg-white/40"></div>
 </div>
 
-<section class="py-20">
+<section class="py-19">
   <div class="text-center mb-10">
 
-    <div class="relative mb-10">
+    <div class="relative mb-8">
 
       <h2  class="text-white text-5xl mb-6 drop-shadow-lg"
       style="font-family: 'Pacifico', cursive;">
@@ -83,10 +83,10 @@
 
 </div>
 
-        <div class="grid grid-cols-3 md:grid-cols-5 gap-3 justify-items-center">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-1 justify-items-center">
 
             @forelse ($photos as $photo)
-                <div class="bg-white/20 backdrop-blur-md p-2 rounded-xl shadow border border-white/20 w-18">
+                <div class="bg-white/20 backdrop-blur-md p-2 rounded-xl shadow border border-white/20 w-44">
 
                     <img
                         src="{{ asset('storage/' . $photo->image) }}"
@@ -95,7 +95,7 @@
                         class="rounded-lg w-full aspect-square object-cover cursor-pointer hover:scale-105 transition duration-300"
                     >
 
-                    <div class="text-xs mt-1 text-white/80 text-center">
+                    <div class="text-xs mt-1 text-white/80 text-center font-bold">
                         {{ $photo->created_at->format('d M Y') }}
                     </div>
 
